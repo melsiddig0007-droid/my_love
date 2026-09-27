@@ -1,147 +1,44 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: #0d0914;
-    color: #ffffff;
-    font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+// Set the date for the countdown
+const targetDate = new Date("November 2, 2026 00:00:00").getTime();
 
-#background-stars {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: radial-gradient(circle at center, #2e1a3d 0%, #0d0914 100%);
-    animation: galaxyRotate 60s linear infinite;
-}
+const countdownFunction = setInterval(function() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-@keyframes galaxyRotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-.container {
-    text-align: center;
-    max-width: 800px;
-}
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: 300;
-    letter-spacing: 2px;
-    background: linear-gradient(to right, #ffb3d9, #e6b3ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
+    if (distance < 0) {
+        clearInterval(countdownFunction);
+        document.getElementById("countdown-section").classList.add("hidden");
+        document.getElementById("gift-section").classList.remove("hidden");
+    }
+}, 1000);
 
-#timer {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-}
+// Transition from Gift to Message
+document.getElementById("gift-box").addEventListener("click", function() {
+    document.getElementById("gift-section").classList.add("hidden");
+    document.getElementById("message-section").classList.remove("hidden");
+});
 
-.time-box {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    width: 80px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
+// Transition from Message to Memories
+document.getElementById("next-btn").addEventListener("click", function() {
+    document.getElementById("message-section").classList.add("hidden");
+    document.getElementById("memories-section").classList.remove("hidden");
+});
 
-.time-box span {
-    font-size: 2.5rem;
-    font-weight: bold;
-    display: block;
-    color: #ffd1dc;
-}
-
-.time-box p {
-    font-size: 0.8rem;
-    color: #aaa;
-    margin-top: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.gift-box {
-    cursor: pointer;
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.gift-box img {
-    width: 150px;
-}
-
-.hidden {
-    display: none;
-}
-
-.message-card {
-    background: rgba(30, 20, 40, 0.8);
-    padding: 40px;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 182, 193, 0.3);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.polaroid-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.polaroid {
-    background: #fff;
-    padding: 10px 10px 30px 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: rotate(-5deg);
-    transition: transform 0.3s;
-}
-
-.polaroid:nth-child(even) {
-    transform: rotate(5deg);
-}
-
-.polaroid:hover {
-    transform: rotate(0deg) scale(1.05);
-    z-index: 10;
-}
-
-.polaroid img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-button {
-    background: linear-gradient(45deg, #ffb6c1, #dda0dd);
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    color: #fff;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
-}
+// Transition from Memories to Final Message
+document.getElementById("final-btn").addEventListener("click", function() {
+    document.getElementById("memories-section").classList.add("hidden");
+    document.getElementById("final-section").classList.remove("hidden");
+});
 
 button:hover {
     transform: scale(1.05);
