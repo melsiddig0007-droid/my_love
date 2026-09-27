@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Her Special Day</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="background-stars"></div>
+    <main class="container">
+        <!-- Countdown Section -->
+        <section id="countdown-section">
+            <h1>Her Special Day is Coming</h1>
+            <div id="timer">
+                <div class="time-box"><span id="days">00</span><p>Hari</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Jam</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Menit</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Detik</p></div>
+            </div>
+        </section>
+
+        <!-- Gift Animation Section -->
+        <section id="gift-section" class="hidden">
+            <div class="gift-box" id="gift-box">
+                <img src="gift-icon.png" alt="Gift">
+                <p>Klik untuk membuka kejutanmu</p>
+            </div>
+        </section>
+
+        <!-- Birthday Message Section -->
+        <section id="message-section" class="hidden">
+            <div class="message-card">
+                <h2>Happy Birthday</h2>
+                <div id="typed-message"></div>
+                <button id="next-btn">Next</button>
+            </div>
+        </section>
+
+        <!-- Memory Collage Section -->
+        <section id="memories-section" class="hidden">
+            <div class="polaroid-grid">
+                <!-- Add your image sources here -->
+                <div class="polaroid"><img src="memory1.jpg" alt="Memory 1"></div>
+                <div class="polaroid"><img src="memory2.jpg" alt="Memory 2"></div>
+                <div class="polaroid"><img src="memory3.jpg" alt="Memory 3"></div>
+                <div class="polaroid"><img src="memory4.jpg" alt="Memory 4"></div>
+                <div class="polaroid"><img src="memory5.jpg" alt="Memory 5"></div>
+            </div>
+            <button id="final-btn">Our Story</button>
+        </section>
+
+        <!-- Final Message Section -->
+        <section id="final-section" class="hidden">
+            <div class="final-card">
+                <h1>With All My Love</h1>
+                <p>Always & Forever</p>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
